@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant light (&:where(.light, .light *));
+
+@layer base {
+  :root {
+    --background: #0a0a0a;
+    --surface: #121212;
+    --surface-raised: #181818;
+    --border: #212121;
+    --foreground: #f2f2f2;
+    --muted: #6b6b6b;
+    --primary: #22d472;
+    --primary-dark: #18a355;
+    color-scheme: dark;
+  }
+
+  html.light {
+    --background: #f8fafc;
+    --surface: #ffffff;
+    --surface-raised: #f1f5f9;
+    --border: #e2e8f0;
+    --foreground: #0f172a;
+    --muted: #64748b;
+    --primary: #16a34a;
+    --primary-dark: #15803d;
+    color-scheme: light;
+  }
+
+  body {
+    font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  html.dark body {
+    background-color: #0a0a0a;
+    color: #f2f2f2;
+  }
+
+  html.light body {
+    background-color: #f8fafc;
+    color: #0f172a;
+  }
+
+  code, pre, .font-mono, .mono-text {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+}
+
+/* Custom scrollbars */
+html.dark ::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: #212121;
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #22d472;
+}
+
+html.light ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+html.light ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: #16a34a;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+}
+
+/* Smooth theme transitions */
+*, *::before, *::after {
+  border-color: var(--border);
+}
+
+/* Glow Card Effects */
+.glow-card {
+  transition: border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s ease, background-color 0.25s ease;
+}
+
+html.dark .glow-card:hover {
+  border-color: #22d472;
+  box-shadow: 0 0 28px rgba(34, 212, 114, 0.12);
+}
+
+html.light .glow-card:hover {
+  border-color: #16a34a;
+  box-shadow: 0 10px 25px -5px rgba(22, 163, 74, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+}
+
+/* Terminal Cursor Blink Animation */
+@keyframes terminal-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: terminal-blink 1s step-end infinite;
+}
+
+/* Pulse Glow Animation */
+@keyframes subtle-pulse {
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50% { opacity: 0.28; transform: scale(1.04); }
+}
+
+.pulse-glow {
+  animation: subtle-pulse 6s ease-in-out infinite;
+}
+
+/* Grid overlay background */
+html.dark .bg-tech-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+html.light .bg-tech-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+}
+
+/* Print Optimization for Resume */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printable-resume, #printable-resume * {
+    visibility: visible;
+  }
+  #printable-resume {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    background: white !important;
+    color: #111827 !important;
+  }
+  #printable-resume h1,
+  #printable-resume h2,
+  #printable-resume h3,
+  #printable-resume h4,
+  #printable-resume p,
+  #printable-resume span,
+  #printable-resume li {
+    color: #111827 !important;
+  }
+  #printable-resume a {
+    color: #15803d !important;
+    text-decoration: underline;
+  }
+}
