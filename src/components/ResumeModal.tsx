@@ -21,7 +21,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
 MUHAMMAD IMRAN
 DevOps Engineer | CI/CD Automation | Cloud & Infrastructure | Software Engineering Graduate (BSSE)
 Faisalabad, Punjab, Pakistan | +92 311 1593570 | imranusman1710@gmail.com
-github.com/Imrannro | linkedin.com/in/muhammadimrandev10 | imrannro.github.io/imran-portfolio
+github.com/Imrannro | linkedin.com/in/muhammadimrandev10 | imran-portfolio-self.vercel.app
 ================================================================================
 
 PROFESSIONAL SUMMARY
@@ -124,7 +124,7 @@ ADDITIONAL INFORMATION
     const md = `# MUHAMMAD IMRAN
 **DevOps Engineer | CI/CD Automation | Cloud & Infrastructure | Software Engineering Graduate (BSSE)**
 Faisalabad, Punjab, Pakistan | +92 311 1593570 | imranusman1710@gmail.com
-[GitHub](https://github.com/Imrannro) | [LinkedIn](https://linkedin.com/in/muhammadimrandev10) | [Portfolio](https://imrannro.github.io/imran-portfolio)
+[GitHub](https://github.com/Imrannro) | [LinkedIn](https://linkedin.com/in/muhammadimrandev10) | [Portfolio](https://imran-portfolio-self.vercel.app)
 
 ---
 
@@ -306,8 +306,8 @@ Results-driven DevOps Engineer and Software Engineering graduate (BSSE, National
                 <Linkedin className="w-3 h-3" /> linkedin.com/in/muhammadimrandev10
               </a>
               <span>|</span>
-              <a href="https://imrannro.github.io/imran-portfolio" target="_blank" rel="noreferrer" className="hover:underline flex items-center gap-1">
-                <ExternalLink className="w-3 h-3" /> imrannro.github.io/imran-portfolio
+              <a href="https://imran-portfolio-self.vercel.app" target="_blank" rel="noreferrer" className="hover:underline flex items-center gap-1">
+                <ExternalLink className="w-3 h-3" /> imran-portfolio-self.vercel.app
               </a>
             </div>
           </div>

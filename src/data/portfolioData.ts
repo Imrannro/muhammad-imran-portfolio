@@ -17,8 +17,8 @@ export const personalInfo = {
   githubUsername: 'Imrannro',
   linkedin: 'https://linkedin.com/in/muhammadimrandev10',
   linkedinDisplay: 'linkedin.com/in/muhammadimrandev10',
-  portfolioUrl: 'https://imrannro.github.io/imran-portfolio',
-  portfolioDisplay: 'imrannro.github.io/imran-portfolio',
+  portfolioUrl: 'https://imran-portfolio-self.vercel.app',
+  portfolioDisplay: 'imran-portfolio-self.vercel.app',
   yearsExp: 'BSSE 2026',
   projectsCount: '4 Key Projects',
 };

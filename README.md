@@ -10,7 +10,7 @@
 
 **An interactive, production-grade DevOps Engineer & Full-Stack Developer portfolio featuring an interactive CI/CD Pipeline Simulator, comprehensive project architecture deep-dives, interactive terminal resume, and live recruiter inquiry dispatch.**
 
-[🌐 Live Portfolio](https://imrannro.github.io/imran-portfolio) • [💼 LinkedIn Profile](https://linkedin.com/in/muhammadimrandev10) • [💬 WhatsApp](https://wa.me/923111593570) • [📧 Email Me](mailto:imranusman1710@gmail.com)
+[🌐 Live Portfolio](https://imran-portfolio-self.vercel.app) • [💼 LinkedIn Profile](https://linkedin.com/in/muhammadimrandev10) • [💬 WhatsApp](https://wa.me/923111593570) • [📧 Email Me](mailto:imranusman1710@gmail.com)
 
 </div>
 
