@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { personalInfo, experiencesData, projectsData, educationData, certificationsData, additionalInfoData } from '../data/portfolioData';
+import { personalInfo } from '../data/portfolioData';
+import { downloadOfficialCvPdf } from '../utils/generateCvPdf';
 import { X, Download, Printer, Copy, Check, Mail, Phone, MapPin, ExternalLink, Github, Linkedin } from 'lucide-react';
 
 interface ResumeModalProps {
@@ -15,6 +16,20 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
 
   const handlePrint = () => {
     window.print();
+  };
+
+  const handleDownloadPdf = () => {
+    setIsDownloading(true);
+    try {
+      downloadOfficialCvPdf('Muhammad_Imran_DevOps_CV.pdf');
+    } catch (err) {
+      console.error('Error generating PDF:', err);
+      // Fallback print
+      window.print();
+    }
+    setTimeout(() => {
+      setIsDownloading(false);
+    }, 1000);
   };
 
   const fullCvText = `================================================================================
@@ -235,12 +250,22 @@ Results-driven DevOps Engineer and Software Engineering graduate (BSSE, National
 
           <div className="flex flex-wrap items-center gap-2">
             <button
-              onClick={handleDownloadCV}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-mono text-[#f2f2f2] dark:text-[#f2f2f2] light:text-slate-800 bg-[#121212] dark:bg-[#121212] light:bg-white border border-[#212121] dark:border-[#212121] light:border-slate-300 hover:border-[#22d472] dark:hover:border-[#22d472] light:hover:border-[#16a34a] hover:text-[#22d472] dark:hover:text-[#22d472] light:hover:text-[#16a34a] transition-colors cursor-pointer"
-              title="Download ATS-Friendly Resume File"
+              onClick={handleDownloadPdf}
+              disabled={isDownloading}
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded text-xs font-mono bg-[#22d472] dark:bg-[#22d472] light:bg-[#16a34a] text-[#0a0a0a] light:text-white font-bold hover:bg-[#18a355] transition-all cursor-pointer shadow-xs"
+              title="Download Official 2-Page CV as PDF"
             >
-              <Download className="w-3.5 h-3.5 text-[#22d472] dark:text-[#22d472] light:text-[#16a34a]" />
-              <span>{isDownloading ? 'Downloading...' : 'Download File'}</span>
+              <Download className="w-3.5 h-3.5 stroke-[2.5]" />
+              <span>{isDownloading ? 'Generating PDF...' : 'Download PDF'}</span>
+            </button>
+
+            <button
+              onClick={handlePrint}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-mono text-[#f2f2f2] dark:text-[#f2f2f2] light:text-slate-800 bg-[#121212] dark:bg-[#121212] light:bg-white border border-[#212121] dark:border-[#212121] light:border-slate-300 hover:border-[#22d472] dark:hover:border-[#22d472] light:hover:border-[#16a34a] hover:text-[#22d472] dark:hover:text-[#22d472] light:hover:text-[#16a34a] transition-colors cursor-pointer"
+              title="Print or Save via Browser Print Dialog"
+            >
+              <Printer className="w-3.5 h-3.5" />
+              <span>Print</span>
             </button>
 
             <button
@@ -250,15 +275,6 @@ Results-driven DevOps Engineer and Software Engineering graduate (BSSE, National
             >
               {copied ? <Check className="w-3.5 h-3.5 text-[#22d472] dark:text-[#22d472] light:text-[#16a34a]" /> : <Copy className="w-3.5 h-3.5" />}
               <span>{copied ? 'Copied MD' : 'Copy MD'}</span>
-            </button>
-
-            <button
-              onClick={handlePrint}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded text-xs font-mono bg-[#22d472] dark:bg-[#22d472] light:bg-[#16a34a] text-[#0a0a0a] light:text-white font-semibold hover:bg-[#18a355] transition-colors cursor-pointer shadow-sm"
-              title="Print or Save as Official PDF"
-            >
-              <Printer className="w-3.5 h-3.5" />
-              <span>Save PDF / Print</span>
             </button>
 
             <button
