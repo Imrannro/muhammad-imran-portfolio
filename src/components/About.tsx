@@ -16,8 +16,8 @@ export const About: React.FC<AboutProps> = ({ onOpenResume }) => {
   ];
 
   return (
-    <section id="about" className="py-14 sm:py-16 bg-[#121212] dark:bg-[#121212] light:bg-slate-50 border-y border-[#212121] dark:border-[#212121] light:border-slate-200 transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="py-14 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto transition-colors">
+      <div>
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           
@@ -75,6 +75,7 @@ export const About: React.FC<AboutProps> = ({ onOpenResume }) => {
             <div className="pt-2 flex items-center gap-4">
               <button
                 onClick={onOpenResume}
+                aria-label="Read full technical resume, skills, and certifications"
                 className="flex items-center gap-2 text-xs sm:text-sm font-mono font-bold text-[#22d472] dark:text-[#22d472] light:text-[#16a34a] hover:text-white dark:hover:text-white light:hover:text-slate-900 transition-colors cursor-pointer"
               >
                 <span>Read Full Technical Resume &amp; Runbooks</span>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Play, RotateCcw, CheckCircle2, Terminal as TerminalIcon, ShieldCheck, Box, GitBranch, Cpu, ArrowRight, Check } from 'lucide-react';
+import { Play, RotateCcw, CheckCircle2, Terminal as TerminalIcon, ShieldCheck, Box, GitBranch, Cpu, ArrowRight, Check, X, Sparkles } from 'lucide-react';
 import { personalInfo, certificationsData, additionalInfoData } from '../data/portfolioData';
 
 interface Stage {
@@ -11,74 +11,15 @@ interface Stage {
   details: string;
 }
 
-const pipelineStages: Stage[] = [
-  {
-    id: 'checkout',
-    name: '1. Actions Checkout',
-    command: 'actions/checkout@v4',
-    duration: 500,
-    log: '[checkout] Fetching repository refs/heads/main at commit e48a129...',
-    details: '✓ Workspace initialized. HEAD at e48a129 (feat: automated multi-stage CI/CD pipeline)'
-  },
-  {
-    id: 'build',
-    name: '2. Dependency Setup',
-    command: 'npm ci && pip install -r requirements.txt',
-    duration: 600,
-    log: '[build] Resolving package locks, installing dependencies in isolated cache...',
-    details: '✓ Dependencies resolved with 0 vulnerabilities. Build cache synced.'
-  },
-  {
-    id: 'test',
-    name: '3. Automated Test Suite',
-    command: 'pytest -v && npm test -- --coverage',
-    duration: 700,
-    log: '[test] Running unit tests, API schema tests & integration suites...',
-    details: '✓ PASS test_routes.py (14ms) | PASS test_auth.py (22ms) — 100% tests passed.'
-  },
-  {
-    id: 'lint',
-    name: '4. Lint & Code Quality',
-    command: 'npm run lint && flake8',
-    duration: 600,
-    log: '[lint] Executing static analysis, ESLint standards, and Python flake8 checks...',
-    details: '✓ 0 errors, 0 warnings. Code quality gates passed before merge.'
-  },
-  {
-    id: 'docker',
-    name: '5. Docker Multi-Stage Build',
-    command: 'docker build --target production -t imran/app:v2.6 .',
-    duration: 900,
-    log: '[docker] Authoring production-ready Dockerfile with multi-stage builds...',
-    details: '✓ Multi-stage image generated: runtime footprint minimized by 65%.'
-  },
-  {
-    id: 'devsecops',
-    name: '6. DevSecOps Security Gate',
-    command: 'trivy image --severity HIGH,CRITICAL imran/app:v2.6',
-    duration: 600,
-    log: '[security] Scanning container image & dependencies for CVE vulnerabilities...',
-    details: '✓ 0 HIGH / 0 CRITICAL CVEs detected. Branch protection security passed.'
-  },
-  {
-    id: 'deploy',
-    name: '7. Zero-Touch Deployment',
-    command: 'bash scripts/deploy.sh --target=production',
-    duration: 800,
-    log: '[deploy] GitHub Actions workflow triggered → auto-deployed to production...',
-    details: '✓ Zero-touch release deployed on push to main branch with zero downtime.'
-  },
-  {
-    id: 'health',
-    name: '8. Post-Deploy Healthcheck',
-    command: 'curl -fsS https://app/health/status',
-    duration: 500,
-    log: '[health] Executing automated liveness probes and status check badges...',
-    details: '✓ HTTP 200 OK — Status badges updated on repository. Pipeline succeeded!'
-  }
-];
+interface PipelineSimulatorProps {
+  selectedProjectTitle?: string | null;
+  onClearSelectedProject?: () => void;
+}
 
-export const PipelineSimulator: React.FC = () => {
+export const PipelineSimulator: React.FC<PipelineSimulatorProps> = ({
+  selectedProjectTitle,
+  onClearSelectedProject,
+}) => {
   const [isRunning, setIsRunning] = useState(false);
   const [currentStageIndex, setCurrentStageIndex] = useState<number>(-1);
   const [completedStages, setCompletedStages] = useState<string[]>([]);
@@ -93,8 +34,95 @@ export const PipelineSimulator: React.FC = () => {
     }
   ]);
 
+  const activeRepoName = selectedProjectTitle
+    ? selectedProjectTitle.toLowerCase().includes('portfolio')
+      ? 'Portfolio-Website-Devops'
+      : selectedProjectTitle.toLowerCase().includes('commerce')
+      ? 'E-Commerce-Application'
+      : selectedProjectTitle.toLowerCase().includes('ranikot')
+      ? 'Ranikot-Chronicles-3D'
+      : 'Automated-CICD-Pipeline-DevOps-Project'
+    : 'Automated-CICD-Pipeline-DevOps-Project';
+
+  const pipelineStages: Stage[] = [
+    {
+      id: 'checkout',
+      name: '1. Actions Checkout',
+      command: `actions/checkout@v4 (repo: Imrannro/${activeRepoName})`,
+      duration: 450,
+      log: `[checkout] Fetching repository Imrannro/${activeRepoName} at refs/heads/main commit e48a129...`,
+      details: `✓ Workspace initialized. HEAD at e48a129 (feat: automated multi-stage CI/CD pipeline for ${activeRepoName})`
+    },
+    {
+      id: 'build',
+      name: '2. Dependency Setup',
+      command: 'npm ci && pip install -r requirements.txt',
+      duration: 550,
+      log: '[build] Resolving package locks, installing dependencies in isolated cache layer...',
+      details: '✓ Dependencies resolved with 0 vulnerabilities. Build cache synced.'
+    },
+    {
+      id: 'test',
+      name: '3. Automated Test Suite',
+      command: 'pytest -v && npm test -- --coverage',
+      duration: 650,
+      log: '[test] Running unit tests, API schema tests & integration test suites...',
+      details: '✓ PASS test_routes.py (14ms) | PASS test_auth.py (22ms) — 100% automated test coverage.'
+    },
+    {
+      id: 'lint',
+      name: '4. Lint & Code Quality',
+      command: 'npm run lint && flake8',
+      duration: 500,
+      log: '[lint] Executing static analysis, ESLint standards, and Python flake8 checks...',
+      details: '✓ 0 errors, 0 warnings. Code quality gates passed before merge.'
+    },
+    {
+      id: 'docker',
+      name: '5. Docker Multi-Stage Build',
+      command: `docker build --target production -t imran/${activeRepoName.toLowerCase()}:v2.6 .`,
+      duration: 800,
+      log: `[docker] Authoring production Dockerfile with multi-stage builds for ${activeRepoName}...`,
+      details: '✓ Multi-stage image generated: runtime footprint minimized by 65%.'
+    },
+    {
+      id: 'devsecops',
+      name: '6. DevSecOps Security Gate',
+      command: `trivy image --severity HIGH,CRITICAL imran/${activeRepoName.toLowerCase()}:v2.6`,
+      duration: 550,
+      log: '[security] Scanning container image & dependencies for CVE vulnerabilities...',
+      details: '✓ 0 HIGH / 0 CRITICAL CVEs detected. Branch protection security passed.'
+    },
+    {
+      id: 'deploy',
+      name: '7. Zero-Touch Deployment',
+      command: 'bash scripts/deploy.sh --target=production',
+      duration: 750,
+      log: `[deploy] GitHub Actions workflow triggered → auto-deployed ${activeRepoName} to production...`,
+      details: '✓ Zero-touch release deployed on push to main branch with zero downtime.'
+    },
+    {
+      id: 'health',
+      name: '8. Post-Deploy Healthcheck',
+      command: 'curl -fsS https://app/health/status',
+      duration: 450,
+      log: '[health] Executing automated liveness probes and status check badges...',
+      details: '✓ HTTP 200 OK — Status badges updated on repository. Pipeline succeeded!'
+    }
+  ];
+
   const logContainerRef = useRef<HTMLDivElement>(null);
   const cliContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (selectedProjectTitle) {
+      setLogs((prev) => [
+        ...prev,
+        `\n[target-switch] Switched CI/CD simulator context to: Imrannro/${activeRepoName}`,
+        `Ready to execute pipeline for "${selectedProjectTitle}". Click "RUN PIPELINE WORKFLOW".`
+      ]);
+    }
+  }, [selectedProjectTitle, activeRepoName]);
 
   useEffect(() => {
     if (logContainerRef.current) {
@@ -113,7 +141,7 @@ export const PipelineSimulator: React.FC = () => {
     setCurrentStageIndex(-1);
     setCompletedStages([]);
     setLogs([
-      'Pipeline reset. System ready. Click "RUN PIPELINE WORKFLOW" to execute the GitHub Actions automation.'
+      `Pipeline reset for Imrannro/${activeRepoName}. System ready. Click "RUN PIPELINE WORKFLOW" to execute.`
     ]);
   };
 
@@ -123,7 +151,7 @@ export const PipelineSimulator: React.FC = () => {
     setCurrentStageIndex(0);
     setCompletedStages([]);
     setLogs([
-      `[${new Date().toLocaleTimeString()}] Pipeline triggered by event: push (branch: refs/heads/main)`,
+      `[${new Date().toLocaleTimeString()}] Pipeline triggered by event: push (repository: Imrannro/${activeRepoName}, branch: refs/heads/main)`,
       'Initializing GitHub Actions runner on ubuntu-latest...',
       'Enforcing branch protection rules and automated status checks...'
     ]);
@@ -146,7 +174,7 @@ export const PipelineSimulator: React.FC = () => {
     setLogs((prev) => [
       ...prev,
       `\n================================================================`,
-      `🚀 RELEASE AUTO-DEPLOYED SUCCESSFULLY AT ${new Date().toLocaleTimeString()}`,
+      `🚀 RELEASE FOR ${activeRepoName.toUpperCase()} AUTO-DEPLOYED SUCCESSFULLY AT ${new Date().toLocaleTimeString()}`,
       `Workflow: build → test → lint → containerize → deploy | Zero Manual Effort (-70%)`,
       `================================================================`
     ]);
@@ -167,7 +195,7 @@ export const PipelineSimulator: React.FC = () => {
         break;
       case 'deploy':
         runPipeline();
-        response = 'Triggering automated CI/CD pipeline workflow... Watch the live runners above!';
+        response = `Triggering automated CI/CD pipeline workflow for ${activeRepoName}... Watch the live runners above!`;
         break;
       case 'reset':
         resetPipeline();
@@ -214,24 +242,43 @@ export const PipelineSimulator: React.FC = () => {
         <div>
           <div className="flex items-center gap-2 mb-1.5">
             <span className="w-2 h-2 rounded-full bg-[#22d472] dark:bg-[#22d472] light:bg-[#16a34a]" />
-            <span className="font-mono text-xs tracking-wider text-[#22d472] dark:text-[#22d472] light:text-[#16a34a] uppercase font-semibold">
+            <span className="font-mono text-xs tracking-wider text-[#16a34a] dark:text-[#22d472] uppercase font-semibold">
               LIVE WORKFLOW AUTOMATION
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#f2f2f2] dark:text-[#f2f2f2] light:text-slate-900 tracking-[-0.04em]">
-            CI/CD Pipeline Simulator<span className="text-[#22d472] dark:text-[#22d472] light:text-[#16a34a]">.</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-[#f2f2f2] tracking-[-0.04em]">
+            CI/CD Pipeline Simulator<span className="text-[#16a34a] dark:text-[#22d472]">.</span>
           </h2>
-          <p className="text-[#6b6b6b] dark:text-[#9e9e9e] light:text-slate-600 text-sm sm:text-base mt-2 max-w-xl font-normal">
+          <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base mt-2 max-w-xl font-normal">
             Interactive demonstration of my automated GitHub Actions build → test → lint → deploy workflow with Docker multi-stage containerization.
           </p>
         </div>
 
-        {/* Action buttons */}
-        <div className="flex items-center gap-3">
+        {/* Action buttons & Target Badge */}
+        <div className="flex flex-wrap items-center gap-3">
+          {selectedProjectTitle && (
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-mono bg-[#38bdf8]/10 border border-[#38bdf8]/30 text-[#0284c7] dark:text-[#38bdf8]">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span className="font-semibold truncate max-w-[180px] sm:max-w-[240px]">
+                Target: {selectedProjectTitle}
+              </span>
+              {onClearSelectedProject && (
+                <button
+                  onClick={onClearSelectedProject}
+                  aria-label="Clear selected target project and reset to default repository"
+                  className="hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              )}
+            </div>
+          )}
+
           {isCompleted && (
             <button
               onClick={resetPipeline}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-bold bg-[#1a1a1a] dark:bg-[#1a1a1a] light:bg-slate-200 text-[#f2f2f2] dark:text-[#f2f2f2] light:text-slate-800 hover:text-[#22d472] border border-[#212121] dark:border-[#212121] light:border-slate-300 transition-all cursor-pointer shadow-xs"
+              aria-label="Reset CI/CD pipeline simulation stages to initial state"
+              className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-bold bg-slate-100 dark:bg-[#1a1a1a] text-slate-800 dark:text-[#f2f2f2] hover:text-[#16a34a] dark:hover:text-[#22d472] border border-slate-300 dark:border-[#212121] transition-all cursor-pointer shadow-xs"
             >
               <RotateCcw className="w-4 h-4" />
               <span>RESET</span>
@@ -242,16 +289,17 @@ export const PipelineSimulator: React.FC = () => {
             id="run-pipeline-simulator-btn"
             onClick={runPipeline}
             disabled={isRunning}
+            aria-label={isCompleted ? "Re-run automated CI/CD pipeline workflow" : isRunning ? "Automated CI/CD pipeline is currently executing" : "Execute automated GitHub Actions CI/CD pipeline workflow"}
             className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all cursor-pointer ${
               isRunning
-                ? 'bg-[#212121] dark:bg-[#212121] light:bg-slate-200 text-[#6b6b6b] dark:text-[#6b6b6b] light:text-slate-500 cursor-not-allowed'
+                ? 'bg-slate-200 dark:bg-[#212121] text-slate-500 dark:text-slate-400 cursor-not-allowed'
                 : 'bg-[#22d472] dark:bg-[#22d472] light:bg-[#16a34a] text-[#0a0a0a] light:text-white hover:bg-[#18a355] shadow-[0_0_20px_rgba(34,212,114,0.3)]'
             }`}
           >
             {isCompleted ? (
               <>
                 <RotateCcw className="w-4 h-4" />
-                <span>RE-RUN PIPELINE</span>
+                <span>RE-RUN WORKFLOW</span>
               </>
             ) : (
               <>
@@ -264,10 +312,10 @@ export const PipelineSimulator: React.FC = () => {
       </div>
 
       {/* Main Workflow Container */}
-      <div className="rounded-2xl bg-[#121212] dark:bg-[#121212] light:bg-white border border-[#212121] dark:border-[#212121] light:border-slate-200 overflow-hidden shadow-2xl">
+      <div className="rounded-2xl bg-white dark:bg-[#121212] border border-slate-200 dark:border-[#212121] overflow-hidden shadow-2xl">
         
         {/* Stages Progress Bar Track */}
-        <div className="p-4 sm:p-5 bg-[#161616] dark:bg-[#161616] light:bg-slate-100/70 border-b border-[#212121] dark:border-[#212121] light:border-slate-200">
+        <div className="p-4 sm:p-5 bg-slate-50 dark:bg-[#161616] border-b border-slate-200 dark:border-[#212121]">
           <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5">
             {pipelineStages.map((stage, idx) => {
               const isDone = completedStages.includes(stage.id);
@@ -278,10 +326,10 @@ export const PipelineSimulator: React.FC = () => {
                   key={stage.id}
                   className={`p-3 rounded-xl border text-left transition-all ${
                     isDone
-                      ? 'bg-[#22d472]/10 dark:bg-[#22d472]/10 light:bg-emerald-50 border-[#22d472]/40 dark:border-[#22d472]/40 light:border-emerald-300 text-[#f2f2f2] dark:text-[#f2f2f2] light:text-emerald-950'
+                      ? 'bg-emerald-50 dark:bg-[#22d472]/10 border-emerald-300 dark:border-[#22d472]/40 text-emerald-950 dark:text-[#f2f2f2]'
                       : isCurrent
-                      ? 'bg-[#1e1e1e] dark:bg-[#1e1e1e] light:bg-white border-[#22d472] dark:border-[#22d472] light:border-[#16a34a] text-[#22d472] dark:text-[#22d472] light:text-[#16a34a] shadow-[0_0_16px_rgba(34,212,114,0.2)]'
-                      : 'bg-[#0a0a0a] dark:bg-[#0a0a0a] light:bg-white border-[#212121] dark:border-[#212121] light:border-slate-200 text-[#6b6b6b] dark:text-[#8e8e8e] light:text-slate-500'
+                      ? 'bg-white dark:bg-[#1e1e1e] border-[#16a34a] dark:border-[#22d472] text-[#16a34a] dark:text-[#22d472] shadow-[0_0_16px_rgba(34,212,114,0.2)]'
+                      : 'bg-white dark:bg-[#0a0a0a] border-slate-200 dark:border-[#212121] text-slate-500 dark:text-slate-400'
                   }`}
                 >
                   <div className="flex items-center justify-between mb-1.5">
@@ -289,17 +337,17 @@ export const PipelineSimulator: React.FC = () => {
                       Step 0{idx + 1}
                     </span>
                     {isDone ? (
-                      <CheckCircle2 className="w-4 h-4 text-[#22d472] dark:text-[#22d472] light:text-[#16a34a]" />
+                      <CheckCircle2 className="w-4 h-4 text-[#16a34a] dark:text-[#22d472]" />
                     ) : isCurrent ? (
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#22d472] dark:bg-[#22d472] light:bg-[#16a34a] animate-ping" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#16a34a] dark:bg-[#22d472] animate-ping" />
                     ) : (
-                      <span className="w-2 h-2 rounded-full bg-[#212121] dark:bg-[#212121] light:bg-slate-300" />
+                      <span className="w-2 h-2 rounded-full bg-slate-300 dark:bg-[#212121]" />
                     )}
                   </div>
-                  <div className="font-mono text-xs sm:text-sm font-semibold truncate text-[#f2f2f2] dark:text-[#f2f2f2] light:text-slate-900">
+                  <div className="font-mono text-xs sm:text-sm font-semibold truncate text-slate-900 dark:text-[#f2f2f2]">
                     {stage.name.replace(/^\d+\.\s*/, '')}
                   </div>
-                  <div className="font-mono text-xs text-[#6b6b6b] dark:text-[#8e8e8e] light:text-slate-500 truncate mt-1">
+                  <div className="font-mono text-xs text-slate-500 dark:text-slate-400 truncate mt-1">
                     {stage.command}
                   </div>
                 </div>
@@ -309,11 +357,11 @@ export const PipelineSimulator: React.FC = () => {
         </div>
 
         {/* Two-Pane Terminal Console (Live Stream + Interactive CLI) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-[#212121] dark:divide-[#212121] light:divide-slate-800">
+        <div className="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-slate-200 dark:divide-[#212121]">
           
           {/* Left Pane: Live CI Logs Streaming */}
-          <div className="lg:col-span-7 p-4.5 bg-[#0a0a0a] dark:bg-[#0a0a0a] light:bg-slate-950 flex flex-col justify-between h-[320px] sm:h-[340px]">
-            <div className="flex items-center justify-between pb-2.5 border-b border-[#212121] dark:border-[#212121] light:border-slate-800 text-xs sm:text-sm font-mono text-[#6b6b6b] font-medium">
+          <div className="lg:col-span-7 p-4.5 bg-slate-950 dark:bg-[#0a0a0a] flex flex-col justify-between h-[320px] sm:h-[340px]">
+            <div className="flex items-center justify-between pb-2.5 border-b border-slate-800 dark:border-[#212121] text-xs sm:text-sm font-mono text-slate-400 font-medium">
               <span className="flex items-center gap-2">
                 <TerminalIcon className="w-4 h-4 text-[#22d472]" />
                 github-actions / workflow-dispatch
@@ -334,7 +382,7 @@ export const PipelineSimulator: React.FC = () => {
                       ? 'text-[#22d472]'
                       : log.includes('🚀')
                       ? 'text-[#22d472] font-bold py-1'
-                      : 'text-[#8e8e8e]'
+                      : 'text-slate-400'
                   } whitespace-pre-wrap leading-relaxed`}
                 >
                   {log}
@@ -342,18 +390,18 @@ export const PipelineSimulator: React.FC = () => {
               ))}
             </div>
 
-            <div className="pt-2 border-t border-[#212121] dark:border-[#212121] light:border-slate-800 flex items-center justify-between text-xs font-mono text-[#8e8e8e]">
+            <div className="pt-2 border-t border-slate-800 dark:border-[#212121] flex items-center justify-between text-xs font-mono text-slate-400">
               <span>Exit Status: {currentStageIndex === pipelineStages.length ? '0 (Success)' : isRunning ? 'Executing' : 'Ready'}</span>
               <span>Branch: refs/heads/main</span>
             </div>
           </div>
 
           {/* Right Pane: Interactive Terminal CLI */}
-          <div className="lg:col-span-5 p-4.5 bg-[#0e0e0e] dark:bg-[#0e0e0e] light:bg-slate-900 flex flex-col justify-between h-[320px] sm:h-[340px]">
+          <div className="lg:col-span-5 p-4.5 bg-slate-900 dark:bg-[#0e0e0e] flex flex-col justify-between h-[320px] sm:h-[340px]">
             <div>
-              <div className="flex items-center justify-between pb-2.5 border-b border-[#212121] dark:border-[#212121] light:border-slate-800 text-xs sm:text-sm font-mono text-[#6b6b6b]">
-                <span className="font-medium">interactive-shell</span>
-                <span className="text-xs text-[#8e8e8e]">Try: help · skills · deploy · certs</span>
+              <div className="flex items-center justify-between pb-2.5 border-b border-slate-800 dark:border-[#212121] text-xs sm:text-sm font-mono text-slate-400">
+                <span className="font-medium text-slate-300">interactive-shell</span>
+                <span className="text-xs text-slate-400">Try: help · skills · deploy · certs</span>
               </div>
 
               {/* Terminal Quick Chips */}
@@ -364,7 +412,8 @@ export const PipelineSimulator: React.FC = () => {
                     onClick={() => {
                       setCliInput(cmd);
                     }}
-                    className="text-xs font-mono px-2.5 py-1 rounded-md bg-[#161616] dark:bg-[#161616] light:bg-slate-800 text-[#22d472] border border-[#212121] dark:border-[#212121] light:border-slate-700 hover:border-[#22d472]/50 transition-colors cursor-pointer font-medium"
+                    aria-label={`Execute ${cmd} command`}
+                    className="text-xs font-mono px-2.5 py-1 rounded-md bg-slate-800 dark:bg-[#161616] text-[#38bdf8] dark:text-[#22d472] border border-slate-700 dark:border-[#212121] hover:border-[#22d472]/50 transition-colors cursor-pointer font-medium"
                   >
                     ${cmd}
                   </button>
@@ -376,10 +425,10 @@ export const PipelineSimulator: React.FC = () => {
                 {cliHistory.map((item, index) => (
                   <div key={index} className="space-y-0.5">
                     <div className="text-[#22d472] flex items-center gap-1.5 font-medium">
-                      <span className="text-[#6b6b6b]">$</span>
+                      <span className="text-slate-500">$</span>
                       <span>{item.command}</span>
                     </div>
-                    <div className="text-[#8e8e8e] pl-2.5 text-xs sm:text-sm whitespace-pre-wrap leading-relaxed">
+                    <div className="text-slate-300 pl-2.5 text-xs sm:text-sm whitespace-pre-wrap leading-relaxed">
                       {item.output}
                     </div>
                   </div>
@@ -388,7 +437,7 @@ export const PipelineSimulator: React.FC = () => {
             </div>
 
             {/* Input Line Form */}
-            <form onSubmit={handleCliSubmit} className="pt-2.5 border-t border-[#212121] dark:border-[#212121] light:border-slate-800 flex items-center gap-2">
+            <form onSubmit={handleCliSubmit} className="pt-2.5 border-t border-slate-800 dark:border-[#212121] flex items-center gap-2">
               <span className="text-[#22d472] font-mono text-sm font-bold">&gt;</span>
               <input
                 id="interactive-terminal-input"
@@ -396,11 +445,13 @@ export const PipelineSimulator: React.FC = () => {
                 value={cliInput}
                 onChange={(e) => setCliInput(e.target.value)}
                 placeholder="Type command ('help', 'deploy', 'skills')..."
-                className="flex-1 bg-transparent font-mono text-xs sm:text-sm text-[#f2f2f2] focus:outline-none placeholder:text-[#6b6b6b]"
+                aria-label="Terminal command input"
+                className="flex-1 bg-transparent font-mono text-xs sm:text-sm text-[#f2f2f2] focus:outline-none placeholder:text-slate-500"
               />
               <button
                 type="submit"
-                className="px-3 py-1.5 rounded-lg bg-[#212121] dark:bg-[#212121] light:bg-slate-800 text-[#22d472] font-mono text-xs font-bold hover:bg-[#22d472] hover:text-[#0a0a0a] transition-colors cursor-pointer"
+                aria-label="Execute interactive terminal command"
+                className="px-3 py-1.5 rounded-lg bg-slate-800 dark:bg-[#212121] text-[#22d472] font-mono text-xs font-bold hover:bg-[#22d472] hover:text-[#0a0a0a] transition-colors cursor-pointer"
               >
                 EXEC
               </button>
@@ -414,3 +465,4 @@ export const PipelineSimulator: React.FC = () => {
     </section>
   );
 };
+

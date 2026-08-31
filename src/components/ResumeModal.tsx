@@ -252,7 +252,8 @@ Results-driven DevOps Engineer and Software Engineering graduate (BSSE, National
             <button
               onClick={handleDownloadPdf}
               disabled={isDownloading}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded text-xs font-mono bg-[#22d472] dark:bg-[#22d472] light:bg-[#16a34a] text-[#0a0a0a] light:text-white font-bold hover:bg-[#18a355] transition-all cursor-pointer shadow-xs"
+              aria-label="Download official 2-Page CV as PDF document"
+              className="flex items-center gap-1.5 px-3.5 py-2.5 min-h-[44px] rounded-lg text-xs font-mono bg-[#22d472] dark:bg-[#22d472] light:bg-[#16a34a] text-[#0a0a0a] light:text-white font-bold hover:bg-[#18a355] transition-all cursor-pointer shadow-xs"
               title="Download Official 2-Page CV as PDF"
             >
               <Download className="w-3.5 h-3.5 stroke-[2.5]" />
@@ -261,7 +262,8 @@ Results-driven DevOps Engineer and Software Engineering graduate (BSSE, National
 
             <button
               onClick={handlePrint}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-mono text-[#f2f2f2] dark:text-[#f2f2f2] light:text-slate-800 bg-[#121212] dark:bg-[#121212] light:bg-white border border-[#212121] dark:border-[#212121] light:border-slate-300 hover:border-[#22d472] dark:hover:border-[#22d472] light:hover:border-[#16a34a] hover:text-[#22d472] dark:hover:text-[#22d472] light:hover:text-[#16a34a] transition-colors cursor-pointer"
+              aria-label="Print or save CV via browser print dialog"
+              className="flex items-center gap-1.5 px-3.5 py-2.5 min-h-[44px] rounded-lg text-xs font-mono text-[#f2f2f2] dark:text-[#f2f2f2] light:text-slate-800 bg-[#121212] dark:bg-[#121212] light:bg-white border border-[#212121] dark:border-[#212121] light:border-slate-300 hover:border-[#22d472] dark:hover:border-[#22d472] light:hover:border-[#16a34a] hover:text-[#22d472] dark:hover:text-[#22d472] light:hover:text-[#16a34a] transition-colors cursor-pointer"
               title="Print or Save via Browser Print Dialog"
             >
               <Printer className="w-3.5 h-3.5" />
@@ -270,7 +272,8 @@ Results-driven DevOps Engineer and Software Engineering graduate (BSSE, National
 
             <button
               onClick={handleCopyMarkdown}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-mono text-[#6b6b6b] dark:text-[#6b6b6b] light:text-slate-700 hover:text-[#22d472] dark:hover:text-[#22d472] light:hover:text-[#16a34a] bg-[#121212] dark:bg-[#121212] light:bg-white border border-[#212121] dark:border-[#212121] light:border-slate-300 transition-colors cursor-pointer"
+              aria-label={copied ? "CV markdown content copied to clipboard" : "Copy full CV content as Markdown text"}
+              className="flex items-center gap-1.5 px-3.5 py-2.5 min-h-[44px] rounded-lg text-xs font-mono text-[#6b6b6b] dark:text-[#6b6b6b] light:text-slate-700 hover:text-[#22d472] dark:hover:text-[#22d472] light:hover:text-[#16a34a] bg-[#121212] dark:bg-[#121212] light:bg-white border border-[#212121] dark:border-[#212121] light:border-slate-300 transition-colors cursor-pointer"
               title="Copy as Markdown"
             >
               {copied ? <Check className="w-3.5 h-3.5 text-[#22d472] dark:text-[#22d472] light:text-[#16a34a]" /> : <Copy className="w-3.5 h-3.5" />}
@@ -279,7 +282,8 @@ Results-driven DevOps Engineer and Software Engineering graduate (BSSE, National
 
             <button
               onClick={onClose}
-              className="p-1.5 text-[#6b6b6b] dark:text-[#6b6b6b] light:text-slate-500 hover:text-[#f2f2f2] dark:hover:text-white light:hover:text-slate-900 rounded transition-colors ml-1 cursor-pointer"
+              aria-label="Close CV and Resume viewer modal"
+              className="flex items-center justify-center w-11 h-11 min-w-[44px] min-h-[44px] text-[#6b6b6b] dark:text-[#6b6b6b] light:text-slate-500 hover:text-[#f2f2f2] dark:hover:text-white light:hover:text-slate-900 rounded-xl transition-colors ml-1 cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>

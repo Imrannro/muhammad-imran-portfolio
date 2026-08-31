@@ -72,9 +72,9 @@ export const Footer: React.FC = () => {
                 href={personalInfo.github}
                 target="_blank"
                 rel="noreferrer"
-                aria-label="GitHub Profile"
+                aria-label="Visit Muhammad Imran's GitHub Profile"
                 title="GitHub"
-                className="group relative flex items-center justify-center w-10 h-10 rounded-xl bg-[#121212] dark:bg-[#121212] light:bg-white border border-[#212121] dark:border-[#212121] light:border-slate-200 text-[#8e8e8e] dark:text-[#8e8e8e] light:text-slate-600 hover:text-[#22d472] dark:hover:text-[#22d472] light:hover:text-[#16a34a] hover:border-[#22d472]/60 dark:hover:border-[#22d472]/60 light:hover:border-[#16a34a]/60 hover:shadow-[0_0_12px_rgba(34,212,114,0.2)] transition-all cursor-pointer shadow-xs"
+                className="group relative flex items-center justify-center w-11 h-11 min-w-[44px] min-h-[44px] rounded-xl bg-[#121212] dark:bg-[#121212] light:bg-white border border-[#212121] dark:border-[#212121] light:border-slate-200 text-[#8e8e8e] dark:text-[#8e8e8e] light:text-slate-600 hover:text-[#22d472] dark:hover:text-[#22d472] light:hover:text-[#16a34a] hover:border-[#22d472]/60 dark:hover:border-[#22d472]/60 light:hover:border-[#16a34a]/60 hover:shadow-[0_0_12px_rgba(34,212,114,0.2)] transition-all cursor-pointer shadow-xs"
               >
                 <Github className="w-4 h-4 group-hover:scale-110 transition-transform" />
               </a>
@@ -83,9 +83,9 @@ export const Footer: React.FC = () => {
                 href={personalInfo.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                aria-label="LinkedIn Profile"
+                aria-label="Visit Muhammad Imran's LinkedIn Profile"
                 title="LinkedIn"
-                className="group relative flex items-center justify-center w-10 h-10 rounded-xl bg-[#121212] dark:bg-[#121212] light:bg-white border border-[#212121] dark:border-[#212121] light:border-slate-200 text-[#8e8e8e] dark:text-[#8e8e8e] light:text-slate-600 hover:text-[#22d472] dark:hover:text-[#22d472] light:hover:text-[#16a34a] hover:border-[#22d472]/60 dark:hover:border-[#22d472]/60 light:hover:border-[#16a34a]/60 hover:shadow-[0_0_12px_rgba(34,212,114,0.2)] transition-all cursor-pointer shadow-xs"
+                className="group relative flex items-center justify-center w-11 h-11 min-w-[44px] min-h-[44px] rounded-xl bg-[#121212] dark:bg-[#121212] light:bg-white border border-[#212121] dark:border-[#212121] light:border-slate-200 text-[#8e8e8e] dark:text-[#8e8e8e] light:text-slate-600 hover:text-[#22d472] dark:hover:text-[#22d472] light:hover:text-[#16a34a] hover:border-[#22d472]/60 dark:hover:border-[#22d472]/60 light:hover:border-[#16a34a]/60 hover:shadow-[0_0_12px_rgba(34,212,114,0.2)] transition-all cursor-pointer shadow-xs"
               >
                 <Linkedin className="w-4 h-4 group-hover:scale-110 transition-transform" />
               </a>
@@ -94,9 +94,9 @@ export const Footer: React.FC = () => {
                 href="https://wa.me/923111593570"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="WhatsApp Chat"
+                aria-label="Chat with Muhammad Imran on WhatsApp"
                 title="WhatsApp (+92 311 1593570)"
-                className="group relative flex items-center justify-center w-10 h-10 rounded-xl bg-[#121212] dark:bg-[#121212] light:bg-white border border-[#212121] dark:border-[#212121] light:border-slate-200 text-[#8e8e8e] dark:text-[#8e8e8e] light:text-slate-600 hover:text-[#22d472] dark:hover:text-[#22d472] light:hover:text-[#16a34a] hover:border-[#22d472]/60 dark:hover:border-[#22d472]/60 light:hover:border-[#16a34a]/60 hover:shadow-[0_0_12px_rgba(34,212,114,0.2)] transition-all cursor-pointer shadow-xs"
+                className="group relative flex items-center justify-center w-11 h-11 min-w-[44px] min-h-[44px] rounded-xl bg-[#121212] dark:bg-[#121212] light:bg-white border border-[#212121] dark:border-[#212121] light:border-slate-200 text-[#8e8e8e] dark:text-[#8e8e8e] light:text-slate-600 hover:text-[#22d472] dark:hover:text-[#22d472] light:hover:text-[#16a34a] hover:border-[#22d472]/60 dark:hover:border-[#22d472]/60 light:hover:border-[#16a34a]/60 hover:shadow-[0_0_12px_rgba(34,212,114,0.2)] transition-all cursor-pointer shadow-xs"
               >
                 <svg
                   className="w-4 h-4 fill-current group-hover:scale-110 transition-transform"
@@ -108,9 +108,9 @@ export const Footer: React.FC = () => {
 
               <a
                 href={`mailto:${personalInfo.email}`}
-                aria-label="Send Email"
+                aria-label="Send email to Muhammad Imran"
                 title={`Email (${personalInfo.email})`}
-                className="group relative flex items-center justify-center w-10 h-10 rounded-xl bg-[#121212] dark:bg-[#121212] light:bg-white border border-[#212121] dark:border-[#212121] light:border-slate-200 text-[#8e8e8e] dark:text-[#8e8e8e] light:text-slate-600 hover:text-[#22d472] dark:hover:text-[#22d472] light:hover:text-[#16a34a] hover:border-[#22d472]/60 dark:hover:border-[#22d472]/60 light:hover:border-[#16a34a]/60 hover:shadow-[0_0_12px_rgba(34,212,114,0.2)] transition-all cursor-pointer shadow-xs"
+                className="group relative flex items-center justify-center w-11 h-11 min-w-[44px] min-h-[44px] rounded-xl bg-[#121212] dark:bg-[#121212] light:bg-white border border-[#212121] dark:border-[#212121] light:border-slate-200 text-[#8e8e8e] dark:text-[#8e8e8e] light:text-slate-600 hover:text-[#22d472] dark:hover:text-[#22d472] light:hover:text-[#16a34a] hover:border-[#22d472]/60 dark:hover:border-[#22d472]/60 light:hover:border-[#16a34a]/60 hover:shadow-[0_0_12px_rgba(34,212,114,0.2)] transition-all cursor-pointer shadow-xs"
               >
                 <Mail className="w-4 h-4 group-hover:scale-110 transition-transform" />
               </a>
@@ -134,8 +134,9 @@ export const Footer: React.FC = () => {
 
             <button
               onClick={scrollToTop}
-              className="flex items-center gap-1.5 text-xs text-[#8e8e8e] dark:text-[#8e8e8e] light:text-slate-600 hover:text-[#22d472] dark:hover:text-[#22d472] light:hover:text-[#16a34a] transition-colors cursor-pointer group"
+              className="flex items-center justify-center gap-1.5 text-xs text-[#8e8e8e] dark:text-[#8e8e8e] light:text-slate-600 hover:text-[#22d472] dark:hover:text-[#22d472] light:hover:text-[#16a34a] transition-colors cursor-pointer group min-h-[44px] min-w-[44px] px-3 py-2 rounded-xl hover:bg-[#121212] dark:hover:bg-[#121212] light:hover:bg-slate-200/60"
               title="Scroll to top of page"
+              aria-label="Scroll back to top of page"
             >
               <span>Top</span>
               <ArrowUp className="w-3.5 h-3.5 group-hover:-translate-y-0.5 transition-transform" />

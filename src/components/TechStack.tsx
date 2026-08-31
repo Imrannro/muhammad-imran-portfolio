@@ -69,8 +69,8 @@ export const TechStack: React.FC = () => {
       : techStackData.filter((item) => item.category === selectedCategory);
 
   return (
-    <section id="stack" className="py-14 sm:py-16 bg-[#121212] dark:bg-[#121212] light:bg-slate-50 border-y border-[#212121] dark:border-[#212121] light:border-slate-200 transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="stack" className="py-14 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto transition-colors">
+      <div>
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">

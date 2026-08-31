@@ -5,8 +5,8 @@ import { MessageSquareQuote, CheckCircle2, Star } from 'lucide-react';
 
 export const Testimonials: React.FC = () => {
   return (
-    <section className="py-14 sm:py-16 bg-[#121212] dark:bg-[#121212] light:bg-slate-50 border-y border-[#212121] dark:border-[#212121] light:border-slate-200 transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-14 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto transition-colors">
+      <div>
         
         {/* Section Header */}
         <div className="mb-8 text-center max-w-2xl mx-auto">

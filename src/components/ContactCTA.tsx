@@ -152,8 +152,9 @@ export const ContactCTA: React.FC = () => {
 
                 <button
                   onClick={handleCopyEmail}
-                  className="p-2 rounded-lg bg-[#181818] dark:bg-[#181818] light:bg-slate-200 hover:bg-[#22d472] dark:hover:bg-[#22d472] light:hover:bg-[#16a34a] hover:text-[#0a0a0a] light:hover:text-white text-[#6b6b6b] dark:text-[#8e8e8e] light:text-slate-700 transition-all cursor-pointer shrink-0"
+                  className="flex items-center justify-center w-11 h-11 min-w-[44px] min-h-[44px] rounded-xl bg-[#181818] dark:bg-[#181818] light:bg-slate-200 hover:bg-[#22d472] dark:hover:bg-[#22d472] light:hover:bg-[#16a34a] hover:text-[#0a0a0a] light:hover:text-white text-[#6b6b6b] dark:text-[#8e8e8e] light:text-slate-700 transition-all cursor-pointer shrink-0"
                   title="Copy email to clipboard"
+                  aria-label={copied ? "Email address copied to clipboard" : "Copy email address to clipboard"}
                 >
                   {copied ? <CheckCircle2 className="w-4 h-4 text-[#22d472]" /> : <Copy className="w-4 h-4" />}
                 </button>
@@ -180,6 +181,7 @@ export const ContactCTA: React.FC = () => {
                   href="https://wa.me/923111593570"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Chat with Muhammad Imran on WhatsApp"
                   className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#1a1a1a] dark:bg-[#1a1a1a] light:bg-emerald-50 hover:bg-[#22d472] dark:hover:bg-[#22d472] light:hover:bg-[#16a34a] hover:text-[#0a0a0a] light:hover:text-white text-[#22d472] dark:text-[#22d472] light:text-[#16a34a] text-xs font-mono font-bold transition-all cursor-pointer shrink-0 border border-[#22d472]/30 dark:border-[#22d472]/30 light:border-emerald-300"
                   title="Open WhatsApp chat directly"
                 >
@@ -197,6 +199,7 @@ export const ContactCTA: React.FC = () => {
                   <span className="text-[10px] font-mono text-[#6b6b6b] dark:text-[#8e8e8e] light:text-slate-500 block font-semibold">DIRECT PHONE</span>
                   <a
                     href={`tel:${personalInfo.phone.replace(/\s+/g, '')}`}
+                    aria-label={`Call Muhammad Imran at ${personalInfo.phone}`}
                     className="text-xs sm:text-sm font-mono text-[#f2f2f2] dark:text-[#f2f2f2] light:text-slate-900 hover:text-[#22d472] dark:hover:text-[#22d472] light:hover:text-[#16a34a] transition-colors font-medium"
                   >
                     {personalInfo.phone}
@@ -224,6 +227,7 @@ export const ContactCTA: React.FC = () => {
                 href={personalInfo.github}
                 target="_blank"
                 rel="noreferrer"
+                aria-label="Visit Muhammad Imran's GitHub Profile"
                 className="flex items-center justify-center gap-2 p-2.5 rounded-xl bg-[#0a0a0a] dark:bg-[#0a0a0a] light:bg-slate-100 border border-[#212121] dark:border-[#212121] light:border-slate-200 hover:border-[#22d472] dark:hover:border-[#22d472] light:hover:border-[#16a34a] text-xs font-mono font-semibold text-[#f2f2f2] dark:text-[#f2f2f2] light:text-slate-800 transition-all"
               >
                 <Github className="w-4 h-4 text-[#22d472] dark:text-[#22d472] light:text-[#16a34a]" />
@@ -234,6 +238,7 @@ export const ContactCTA: React.FC = () => {
                 href={personalInfo.linkedin}
                 target="_blank"
                 rel="noreferrer"
+                aria-label="Visit Muhammad Imran's LinkedIn Profile"
                 className="flex items-center justify-center gap-2 p-2.5 rounded-xl bg-[#0a0a0a] dark:bg-[#0a0a0a] light:bg-slate-100 border border-[#212121] dark:border-[#212121] light:border-slate-200 hover:border-[#22d472] dark:hover:border-[#22d472] light:hover:border-[#16a34a] text-xs font-mono font-semibold text-[#f2f2f2] dark:text-[#f2f2f2] light:text-slate-800 transition-all"
               >
                 <Linkedin className="w-4 h-4 text-[#22d472] dark:text-[#22d472] light:text-[#16a34a]" />

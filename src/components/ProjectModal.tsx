@@ -36,7 +36,8 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
           </div>
           <button
             onClick={onClose}
-            className="p-1 text-[#6b6b6b] dark:text-[#6b6b6b] light:text-slate-500 hover:text-[#f2f2f2] dark:hover:text-white light:hover:text-slate-900 rounded transition-colors cursor-pointer"
+            aria-label={`Close ${project.title} details dialog`}
+            className="flex items-center justify-center w-11 h-11 min-w-[44px] min-h-[44px] text-[#6b6b6b] dark:text-[#6b6b6b] light:text-slate-500 hover:text-[#f2f2f2] dark:hover:text-white light:hover:text-slate-900 rounded-xl transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>

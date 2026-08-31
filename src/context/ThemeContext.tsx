@@ -10,9 +10,23 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
+const THEME_STORAGE_KEY = 'portfolio_theme';
+
+const getInitialTheme = (): Theme => {
+  if (typeof window !== 'undefined') {
+    const saved = localStorage.getItem(THEME_STORAGE_KEY) as Theme | null;
+    if (saved === 'dark' || saved === 'light') {
+      return saved;
+    }
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return 'dark';
+    }
+  }
+  return 'light';
+};
+
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  // Always initialize in light theme on initial page load / refresh
-  const [theme, setThemeState] = useState<Theme>('light');
+  const [theme, setThemeState] = useState<Theme>(getInitialTheme);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -22,6 +36,11 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     } else {
       root.classList.add('light');
       root.classList.remove('dark');
+    }
+    try {
+      localStorage.setItem(THEME_STORAGE_KEY, theme);
+    } catch (e) {
+      console.warn('Unable to persist theme to localStorage', e);
     }
   }, [theme]);
 
@@ -47,3 +66,4 @@ export const useTheme = (): ThemeContextType => {
   }
   return context;
 };
+
